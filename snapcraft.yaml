@@ -1,0 +1,53 @@
+name: snapcraft-python-gnome-issue
+title: snapcraft-python-gnome-issue
+version: git
+summary: Bug reproductions.
+base: core20
+grade: stable
+confinement: strict
+description: Test
+
+apps:
+  snapcraft-python-gnome-issue:
+    command: bin/start.sh
+    extensions:
+      - gnome-3-38
+    environment:
+      TMPDIR: $XDG_RUNTIME_DIR
+    plugs:
+      - audio-playback
+      - audio-record
+      - browser-support
+      - camera
+      - desktop
+      - desktop-legacy
+      - home
+      - network
+      - network-bind
+      - opengl
+      - wayland
+      - x11
+
+
+parts:
+  server:
+    plugin: python
+    source: .
+    requirements:
+      - requirements.txt
+      - requirements-linux.txt
+    stage-packages:
+      - python3-opencv
+      - libpython3.8
+
+  server-code:
+    plugin: dump
+    source: .
+    organize:
+      '*': bin/server/
+
+  scripts:
+    plugin: dump
+    source: .
+    organize:
+      'start.sh': bin/

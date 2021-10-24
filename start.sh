@@ -1,0 +1,1 @@
+python3 $SNAP/bin/server/main.py
