@@ -1,0 +1,1 @@
+# snapcraft-python-gnome-issue
